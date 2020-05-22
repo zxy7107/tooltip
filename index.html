@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>boostrap tooltip源码分析</title>
+        <link rel="stylesheet" href="./tooltip.css">
+        <style>
+            h3 {
+                font-weight: bold;
+            }
+            button {
+                width: 200px;
+                color: rgb(81, 131, 245);
+                font-size: 16px;
+                font-weight: 600;
+                background: white;
+                border-width: 2px;
+                border-color: rgb(81, 131, 245);
+                border-image: initial;
+                padding: 10px 16px;
+                border-radius: 4px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="demo-selector">
+            <h3>Selector</h3>
+            <p>String</p>
+            <div>
+                <button class="selector-class">.selector-class</button>
+                <button id="selector-id">#selector-id</button>
+            </div>
+            <p>Element</p>
+            <div>
+                <button id="selector-element">document.getElementById('#selector-element')</button>
+            </div>
+            <p>Element []</p>
+            <div>
+                <button id="selector-element-1">[element1, element2, element3]</button>
+                <button id="selector-element-2">..</button>
+                <button id="selector-element-3">..</button>
+            </div>
+            <p>nodeList</p>
+            <div>
+                <button class="selector-nodelist">document.querySelectorAll('.selector-nodelist')</button>
+                <button class="selector-nodelist">..</button>
+                <button class="selector-nodelist">..</button>
+                <button class="selector-nodelist">..</button>
+            </div>
+
+
+        </div>
+        <div class="demo-disable">
+            <h3>disable() - enable()</h3>
+            <div>
+                <button id="demo-disable">disable()</button>
+                <button id="demo-enable">enable()</button>
+            </div>
+        </div>
+        <div class="demo-hooks">
+            <h3>Hooks</h3>
+            <div>
+                <button id="demo-onshow">onShow()</button>
+            </div>
+        </div>
+        <div class="demo-data-attribute">
+            <h3>data-tooltip-prop</h3>
+            <div>
+                <button id="demo-data-attribute" data-tooltip-content="我是提示信息哟">data-tooltip-prop</button>
+            </div>
+        </div>
+        <div class="demo-placement">
+            <h3>Placement</h3>
+            <div>
+                <button class="button-placement" id="placement-top" data-tooltip-content="我是提示信息哟我是提示信息哟我是提示信息哟我是提示信息哟我是提示信息哟我是提示信息哟我是提示信息哟我是提示信息哟我是提示信息哟我是提示信息哟我是提示信息哟我是提示信息哟我是提示信息哟我是提示信息哟">top</button>
+                <button class="button-placement" id="placement-bottom" data-tooltip-content="我是提示信息哟">bottom</button>
+                <button class="button-placement" id="placement-left" data-tooltip-content="我是提示信息哟">left</button>
+                <button class="button-placement" id="placement-right" data-tooltip-content="我是提示信息哟">right</button>
+            </div>
+        </div>
+        <div class="demo-offset">
+            <h3>Offset</h3>
+            <div>
+                <button class="button-offset" data-tooltip-offset="[20, 20]" data-tooltip-content="我是提示信息哟">offset: [20, 20]</button>
+            </div>
+        </div>
+        <div class="demo-background-color">
+            <h3>BackgroundColor</h3>
+            <div>
+                <button class="button-background-color" data-tooltip-content="我是提示信息哟">backgroundColor: rgb(255, 249, 197), color: red;</button>
+            </div>
+        </div>
+        <div class="demo-max-width">
+            <h3>MaxWidth</h3>
+            <div>
+                <button class="button-max-width" data-tooltip-content="我是提示信息哟">maxWidth: 20</button>
+            </div>
+        </div>
+        <div class="demo-delay">
+            <h3>Delay</h3>
+            <div>
+                <button class="button-delay" data-tooltip-content="我是提示信息哟">delay: 500</button>
+            </div>
+        </div>
+        <div class="demo-duration">
+            <h3>Duration</h3>
+            <div>
+                <button class="button-duration-1" data-tooltip-content="我是提示信息哟">duration: 400</button>
+                <button class="button-duration-2" data-tooltip-content="我是提示信息哟">duration: [500, 500]</button>
+            </div>
+        </div>
+        <script type="module" src="./tooltip.js"></script>
+        <script type="module">
+            import Tooltip from "./tooltip.js";
+            Tooltip('.selector-class', {
+                content: '.selector-class'
+            });
+            Tooltip('#selector-id', {
+                content: '#selector-id'
+            });
+            Tooltip(document.getElementById('selector-element'), {
+                content: '#selector-id'
+            });
+            Tooltip([document.getElementById('selector-element-1'),
+                document.getElementById('selector-element-2'),
+                document.getElementById('selector-element-3')], {
+                    content: '#selector-id'
+                }
+            );
+            Tooltip(document.querySelectorAll('.selector-nodelist'), {
+                    content: '#selector-id'
+                }
+            );
+            let ts1 = Tooltip('#demo-disable', {
+                    content: '#selector-id'
+                }
+            );
+            ts1[0].disable();
+
+            let ts2 = Tooltip('#demo-enable', {
+                    content: '#selector-id'
+                }
+            );
+            ts2[0].enable();
+
+            Tooltip('#demo-onshow', {
+                content: '#demo-onshow',
+                onShow(instance){
+                    console.log(instance.id)
+                    console.log('我知道你要onShow咯!')
+                },
+                onHide(instance){
+                    console.log('我知道你要onHide咯!')
+                }
+            });
+
+            Tooltip('#demo-data-attribute');
+
+            Tooltip('#placement-top', {
+                placement: 'top'
+            });
+            Tooltip('#placement-bottom', {
+                placement: 'bottom'
+            });
+            Tooltip('#placement-left', {
+                placement: 'left'
+            });
+            Tooltip('#placement-right', {
+                placement: 'right'
+            });
+            Tooltip('.button-offset');
+            Tooltip('.button-background-color', {
+                backgroundColor:  'rgb(255, 249, 197)',
+                fontColor: 'red'
+            });
+            Tooltip('.button-max-width', {
+                maxWidth: 100
+            });
+            Tooltip('.button-delay', {
+                delay: 500 // 毫秒
+            });
+            Tooltip('.button-duration-1', {
+                duration: 2000
+            });
+            Tooltip('.button-duration-2', {
+                duration: [1000, 1000]
+            });
+        </script>
+    </body>
+</html>

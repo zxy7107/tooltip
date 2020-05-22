@@ -1,0 +1,76 @@
+.tooltip-box {
+    position: relative;
+    background-color: #333;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.4;
+    display: inline-block;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.tooltip-context {
+    position: relative;
+    padding: 5px 9px;
+}
+.tooltip-arrow {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    color: #333;
+}
+
+.tooltip-arrow:before {
+    content: '';
+    position: absolute;
+    border-color: transparent;
+    border-style: solid;
+}
+.tooltip-box[data-placement^=top] > .tooltip-arrow {
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    bottom: 0;
+}
+.tooltip-box[data-placement^=top] > .tooltip-arrow:before {
+    left: 0;
+    bottom: -7px;
+    border-width: 8px 8px 0;
+    border-top-color: initial;
+}
+
+.tooltip-box[data-placement^=bottom] > .tooltip-arrow {
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    top: 0;
+}
+.tooltip-box[data-placement^=bottom] > .tooltip-arrow:before {
+    left: 0;
+    top: -7px;
+    border-width: 0 8px 8px 8px;
+    border-bottom-color: initial;
+}
+
+.tooltip-box[data-placement^=right] > .tooltip-arrow {
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+    left: 0;
+}
+.tooltip-box[data-placement^=right] > .tooltip-arrow:before {
+    top: 0;
+    left: -8px;
+    border-width: 8px 8px 8px 0;
+    border-right-color: initial;
+}
+
+.tooltip-box[data-placement^=left] > .tooltip-arrow {
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+    right: 0;
+}
+.tooltip-box[data-placement^=left] > .tooltip-arrow:before {
+    top: 0;
+    right: -8px;
+    border-width: 8px 0px 8px 8px;
+    border-left-color: initial;
+}
