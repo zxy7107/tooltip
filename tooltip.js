@@ -26,8 +26,6 @@ class TooltipClass {
         this.showTimeout; // 显示的定时器
         this.hideTimeout; // 隐藏的定时器
         this._addListeners(); // 监听事件
-        // this._triggerHandleCounter = 0;
-        // this._mouseLeaveHandleCounter = 0;
     }
 
     show() {
@@ -146,17 +144,6 @@ class TooltipClass {
 
         let { posX, posY } = this._calcuPosition(x, y);
 
-        // console.log('x: ' + x);
-        // console.log('this.tooltipBox.clientWidth: ' + this.tooltipBox.clientWidth);
-        // console.log('posX: ' + posX);
-        // console.log('---------------')
-        //
-        // console.log('y: ' + y);
-        // console.log('this.tooltipBox.clientHeight: ' + this.tooltipBox.clientHeight);
-        // console.log('posY: ' + posY);
-        // console.log('===============')
-
-
         this.instanceWrapper.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
 
         const duration = this._getDuration(true);
@@ -223,7 +210,6 @@ class TooltipClass {
      * @private
      */
     _triggerHandle(event){
-        // console.log(`${this.id} - triggerHandle  ${++this._triggerHandleCounter}`);
         if(this.state.isDisabled) {
             return;
         }
@@ -238,7 +224,6 @@ class TooltipClass {
      * @private
      */
     _mouseLeaveHandle(event){
-        // console.log(`${this.id} - _mouseLeaveHandle  ${++this._mouseLeaveHandleCounter}`);
         this._scheduleHide();
     }
 
